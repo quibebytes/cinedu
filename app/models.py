@@ -7,5 +7,5 @@ class Documentario(models.Model):
     data_publicacao = models.DateField()
     duracao = models.DurationField()
     ultimo_segundo = models.DurationField()
-    thumbnail = models.BinaryField()
+    thumbnail = models.ImageField(upload_to='thumbnails/',blank=True, null=True)
 

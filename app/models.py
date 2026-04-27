@@ -9,3 +9,5 @@ class Documentario(models.Model):
     ultimo_segundo = models.DurationField()
     thumbnail = models.ImageField(upload_to='thumbnails/',blank=True, null=True)
 
+    def __str__(self):
+        return self.titulo

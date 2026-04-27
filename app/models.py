@@ -17,5 +17,8 @@ class Favorito(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     documentario = models.ForeignKey(Documentario, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.usuario.username} ❤️ "{self.documentario.titulo}"'
+
     class Meta:
         unique_together = ('usuario', 'documentario')

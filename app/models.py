@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Documentario(models.Model):
     titulo = models.CharField(max_length=100)
@@ -11,3 +12,10 @@ class Documentario(models.Model):
 
     def __str__(self):
         return self.titulo
+
+class Favorito(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    documentario = models.ForeignKey(Documentario, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('usuario', 'documentario')

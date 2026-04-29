@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br"> <!--lang é a linguagem que será usada no sistema-->
+    <head><!--centro de controle invisível de uma página-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}
+                Cinedu
+            {% endblock %}
+        </title><!--O titulo do documento - o algoritmo usa para decidir aos ordens da página - obrigatório em HTML-->
+        <!--Link que aprova os incones-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <!--link que permite o css de fazer alterações-->
+        <link rel="stylesheet" href="{% static 'style.css' %}"> <!--ex: no docx-->
+    </head>
+    
+    <body>
+        {% block content %}
+        {% endblock %}
+    </body>
+
+</html>

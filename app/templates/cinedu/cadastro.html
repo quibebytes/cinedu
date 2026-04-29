@@ -1,0 +1,42 @@
+{% extends 'cinedu/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+
+     <div class="logo">
+         <img src="{% static 'Atendendo.png' %}" alt="Logo CINEDU">
+     </div>
+
+    <h1>CINEDU</h1>
+
+    <form class="cadastro-form" method="post"> <!--TUDO O QUE USUÁRIO PODE PREENCHER-->
+
+        <!--NOME-->
+        <label for="nome">Nome</label><br>
+        <input type="text" id="nome" name="nome" placeholder="Digite o seu nome: " required><br><br><!--BR = PULAR LINHA 'ENTER'-->
+
+        <!--SENHA-->
+        <label for="senha">Senha</label><br>
+        <div class="senha-container">
+        <input type="password" id="senha" name="senha" placeholder="Digite a sua senha: " required><br><br>
+        </div>
+
+        <!--PALAVRA-CHAVE--
+        <label for="chave">Palavra-Chave</label><br>
+        <input type="password" id="chave" name="chave" placeholder="Digite o nome do seu cachorro: " required><br><br>
+        -->
+
+        <!--BOTÃO-->
+        <button type="submit" class="btn-cadastro">Cadastrar</button>
+
+        <p id="erro"></p>
+
+        <p class="link-cadastro">
+        Já tem conta? <a href="{% url 'login' %}">Ir para login</a>
+        </p> 
+
+    </form>
+
+</div>
+{% endblock %}

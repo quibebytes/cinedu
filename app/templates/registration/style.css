@@ -1,0 +1,146 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* ===== FUNDO ===== */
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #141414, #454545);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 50px;
+  border-radius: 10px;
+  width: 420px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+  animation: aparecer 0.6s ease;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: -80px;
+}
+
+.logo img {
+  width: 180px;
+  height: auto;
+}
+
+/* ===== TÍTULO ===== */
+h1 {
+  color: yellow;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* ===== LABEL ===== */
+label {
+  color: #fff;
+  font-size: 14px;
+}
+
+/* ===== INPUT ===== */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  background: #333;
+  color: white;
+  outline: none;
+}
+
+input:hover {
+  border: 1px solid #fff700;
+}
+
+/* ===== SENHA ===== */
+.senha-container {
+  position: relative;
+}
+
+.senha-container input {
+  padding-right: 40px;
+}
+
+/* ===== BOTÃO CADASTRO ===== */
+.btn-cadastro {
+  width: 100%;
+  padding: 12px;
+  background: white;
+  color: #111;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-cadastro:hover {
+  background: #fff700;
+}
+
+/* ===== BOTÃO LOGIN ===== */
+.btn-login {
+  width: 100%;
+  padding: 12px;
+  background: #fff700;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-login:hover {
+  background: #fff700;
+}
+
+/* ===== LINK ===== */
+.link-cadastro {
+  color: #ccc;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.link-cadastro a {
+  color: #fff700;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link-cadastro a:hover {
+  text-decoration: underline;
+}
+
+/* ===== ERRO ===== */
+#erro {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* ===== ANIMAÇÃO ===== */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

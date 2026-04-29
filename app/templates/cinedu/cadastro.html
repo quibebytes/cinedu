@@ -12,14 +12,20 @@
 
     <form class="cadastro-form" method="post"> <!--TUDO O QUE USUÁRIO PODE PREENCHER-->
 
+        {% csrf_token %}
         <!--NOME-->
         <label for="nome">Nome</label><br>
-        <input type="text" id="nome" name="nome" placeholder="Digite o seu nome: " required><br><br><!--BR = PULAR LINHA 'ENTER'-->
+        {{ cadastro_form.username }}
 
         <!--SENHA-->
         <label for="senha">Senha</label><br>
         <div class="senha-container">
-        <input type="password" id="senha" name="senha" placeholder="Digite a sua senha: " required><br><br>
+            {{ cadastro_form.password1 }}
+        </div>
+
+        <label for="senha">Digite a senha novamente</label><br>
+        <div class="senha-container">
+            {{ cadastro_form.password2 }}
         </div>
 
         <!--PALAVRA-CHAVE--
@@ -30,7 +36,15 @@
         <!--BOTÃO-->
         <button type="submit" class="btn-cadastro">Cadastrar</button>
 
-        <p id="erro"></p>
+        {% if cadastro_form.errors %}
+            {% for field in cadastro_form %}
+            {% for error in field.errors %}
+                <p id="erro">{{ error }}</p>
+            {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        <input type="hidden" name="next" value="{{ next }}" />
 
         <p class="link-cadastro">
         Já tem conta? <a href="{% url 'login' %}">Ir para login</a>

@@ -1,7 +1,8 @@
-import django.contrib.messages
-from django.shortcuts import render
+import django.contrib.messages as messages
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
 from .models import CadastroForm
 
 # Create your views here.
@@ -22,6 +23,6 @@ def cadastro(request):
             usuario.save()
             messages.success(request, 'Cadastro realizado com sucesso.')
             login(request, usuario)
-            return redirect('home')
+            return redirect('cinedu:home')
         else:
             return render(request, 'cinedu/cadastro.html', {'cadastro_form': cadastro_form})

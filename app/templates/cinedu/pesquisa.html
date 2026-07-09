@@ -93,7 +93,17 @@
     <!-- COLUNA DIREITA -->
     <div class="resultados">
 
-        <h3>Resultados</h3>
+        {% if termos is None %}
+            <h3>Resultados
+        {% else %}
+            <h3>Resultados para termos "{{ termos }}"
+        {% endif %}
+
+        {% if categoria_atual is None %}
+            </h3>
+        {% else %}
+        na categoria "{{ categoria_atual | capfirst }}" </h3>
+        {% endif %}
 
         <div class="grid-resultados">
 

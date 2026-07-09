@@ -58,11 +58,13 @@ def detalhes(request, doc_id):
 
 @login_required
 def pesquisa(request, cat_id=None):
-    categorias = Categoria.objects.all()[:50]
+    categorias = Categoria.objects.all()
     if cat_id:
         documentarios = Documentario.objects.filter(categoria__id=cat_id)
     else:
         documentarios = Documentario.objects.all()
+
+    termos = None
 
     # Pesquisa simples de substrings
     if request.method == 'POST':
@@ -77,7 +79,9 @@ def pesquisa(request, cat_id=None):
     return render(request, 'cinedu/pesquisa.html', {
         'usuario': request.user,
         'categorias': categorias,
+        'categoria_atual': Categoria.objects.get(id=cat_id).nome if cat_id else None,
         'documentarios': documentarios,
+        'termos': termos,
     })
 
 @login_required

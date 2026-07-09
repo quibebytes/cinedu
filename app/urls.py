@@ -15,6 +15,7 @@ urlpatterns = [
     path('cadastro/', views.cadastro, name='cadastro'),
     path('favoritos/', views.favoritos, name='favoritos'),
     path('pesquisa/', views.pesquisa, name='pesquisa'),
+    path('pesquisa/<int:cat_id>/', views.pesquisa, name='pesquisa_categoria'),
     path('detalhes/<int:doc_id>/', views.detalhes, name='detalhes'),
     path('video/<int:doc_id>/', views.video, name='video'),
     path('logout/', views.logout, name='logout'),

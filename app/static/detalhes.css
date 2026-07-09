@@ -199,11 +199,8 @@ nav a:hover::after{
     transition: all .3s ease;
 }
 
-.estrela img {
-    filter: invert(1);
-}
 
-.estrela img:hover {
+.estrela:hover {
   transform: scale(1.1);
 }
 

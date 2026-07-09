@@ -46,12 +46,21 @@
 
 <body>
 
-    <div class="center">
-    <video id="player" controls>
-        <source src="https://samplelib.com/mp4/sample-5s-720p.mp4" type="video/mp4">
-    Seu navegador não suporta a tag "video".
-    </video>
-    </div>
+    {%if documentario.endereco_video %}
+        <div class="center">
+        <video id="player" controls>
+            <source src="{{ documentario.endereco_video }}" type="video/mp4">
+        Seu navegador não suporta a tag "video".
+        </video>
+        </div>
+    {% else %}
+        <div class="center">
+        <video id="player" controls>
+            <source src="{{ documentario.arquivo_video.url }}" type="video/mp4">
+        Seu navegador não suporta a tag "video".
+        </video>
+        </div>
+    {% endif %}
 
     <script>
         const player = new Plyr("#player", {

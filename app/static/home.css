@@ -139,11 +139,16 @@ nav a:hover::after{
   min-height: 500px;
   height: 70vh;
   max-height: 700px;
-  background: url("1.png") center/cover no-repeat;
+  background: var(--thumb-url) center/cover no-repeat;
   display: flex;
   align-items: center;
   padding-left: 80px;
 }
+
+.banner a {
+  color: inherit;
+  text-decoration: inherit;
+} 
 
 .overlay {
   position: absolute;
@@ -170,7 +175,7 @@ nav a:hover::after{
 .banner-text h1 {
   margin-bottom: 6px;
   font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.1;
 }
 

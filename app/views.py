@@ -1,3 +1,4 @@
+import random
 import django.contrib.messages as messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
@@ -5,12 +6,29 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout as auth_logout
 from django.db.models import Q
 from .forms import CadastroForm, AlterarSenhaForm
-from .models import Favorito, Documentario, Usuario
+from .models import Favorito, Documentario, Usuario, Categoria
 
-# Create your views here.
+
 @login_required
 def home(request):
-    return render(request, 'cinedu/home.html', { 'usuario': request.user })
+
+    # fazer query de um documentario aleatorio
+    pks = Documentario.objects.values_list('pk', flat=True)
+    pk_aleatoria = random.choice(pks)
+    documentario_feature = Documentario.objects.get(pk=pk_aleatoria)
+
+    categorias = Categoria.objects.all()[:50]
+
+    documentarios_dicio = {}
+
+    for cat in categorias:
+        documentarios_dicio[cat.nome] = Documentario.objects.filter(categoria__id=cat.id)
+
+    return render(request, 'cinedu/home.html', {
+        'usuario': request.user,
+        'documentario_feature': documentario_feature,
+        'documentarios_dicio': documentarios_dicio,
+    })
 
 @login_required
 def favoritos(request):
@@ -39,8 +57,18 @@ def detalhes(request, doc_id):
     })
 
 @login_required
-def pesquisa(request):
-    return render(request, 'cinedu/pesquisa.html', { 'usuario': request.user })
+def pesquisa(request, cat_id=None):
+    categorias = Categoria.objects.all()[:50]
+    if cat_id:
+        documentarios = Documentario.objects.filter(categoria__id=cat_id)
+    else:
+        documentarios = Documentario.objects.all()[:50]
+
+    return render(request, 'cinedu/pesquisa.html', {
+        'usuario': request.user,
+        'categorias': categorias,
+        'documentarios': documentarios,
+    })
 
 @login_required
 def video(request, doc_id):
@@ -50,7 +78,7 @@ def video(request, doc_id):
 @login_required
 def logout(request):
     auth_logout(request)
-    return HttpResponse('Log out realizado com sucesso.')
+    return HttpResponse('Logout realizado com sucesso.')
 
 def cadastro(request):
     if request.method == 'GET':

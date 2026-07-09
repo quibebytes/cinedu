@@ -26,6 +26,13 @@ class Documentario(models.Model):
     class Meta:
         verbose_name = 'Documentário'
 
+class Categoria(models.Model):
+    documentario = models.ManyToManyField(Documentario)
+    nome = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f'{self.nome}'
+
 class RegistroSessao(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     documentario = models.ForeignKey(Documentario, on_delete=models.CASCADE)

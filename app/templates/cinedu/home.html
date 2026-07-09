@@ -13,6 +13,11 @@
       const SOL_CAMINHO = "{% static 'SOL.png' %}";
       const SOLCORTADO_CAMINHO = "{% static 'SOLCORTADO.png' %}";
   </script>
+  <style>
+    :root {
+        --thumb-url: url("{{ documentario_feature.thumbnail.url }}");
+    }
+  </style>
  <link rel="stylesheet" href="{% static 'home.css' %}">
 </head>
 
@@ -52,18 +57,19 @@
 
   <!-- BANNER -->
   <section class="banner">
+  <a href="{% url 'cinedu:detalhes' documentario_feature.id %}">
     <div class="overlay"></div>
 
     <div class="banner-text">
-      <p><strong>TRAGÉDIAS</strong></p>
-      <h1>A Era do <span class="destaque-egito">EGITO</span></h1>
-      <p><strong>CONQUISTAS</strong></p>
+        <h1>{{ documentario_feature.titulo }}</h1>
     </div>
+  </a>
   </section>
 
   <!-- CONTINUE ASSISTINDO -->
+  {% for categoria, documentarios in documentarios_dicio.items %}
   <section class="secao">
-    <h2><span>Continue</span> assistindo</h2>
+      <h2>{{ categoria | capfirst }}</h2>
 
     <div class="carrossel-container">
 
@@ -72,12 +78,11 @@
       </button>
 
       <div class="carrossel">
-          <img src="{% static 'boi.jpg' %}">
-          <img src="{% static 'Murallas de Avila.jpg' %}"> <!-- tirei acento pra evitar erro -->
-          <img src="{% static 'boi.jpg' %}">
-          <img src="{% static 'boi.jpg' %}">
-          <img src="{% static 'boi.jpg' %}">
-          <img src="{% static 'boi.jpg' %}">
+          {% for documentario in documentarios %}
+              <a href="{% url 'cinedu:detalhes' documentario.id %}">
+                  <img src="{{ documentario.thumbnail.url }}" alt="{{ documentario.titulo }}">
+              </a>
+          {% endfor %}
       </div>
 
       <button class="seta direita">
@@ -86,9 +91,10 @@
 
     </div>
   </section>
+  {% endfor %}
 
   <!-- DOCUMENTÁRIOS -->
-  <section class="secao">
+  <!--<section class="secao">
     <h2><span>Documentários</span> internacionais</h2>
 
     <div class="carrossel-container">
@@ -111,7 +117,7 @@
       </button>
 
     </div>
-  </section>
+  </section>-->
 
 </main>
 <script>

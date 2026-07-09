@@ -71,14 +71,17 @@
             <h2>Categorias</h2>
 
             <ul>
-                <li><a href="#">Brasileirão</a></li>
+                {% for categoria in categorias %}
+                    <li><a href="{% url 'cinedu:pesquisa_categoria' categoria.id %}">{{ categoria.nome | capfirst }}</a></li>
+                {% endfor %}
+                <!--<li><a href="#">Brasileirão</a></li>
                 <li><a href="#">Internacionais</a></li>
                 <li><a href="#">Biologia</a></li>
                 <li><a href="#">Astronomia</a></li>
                 <li><a href="#">Meio ambiente</a></li>
                 <li><a href="#">Crimes reais</a></li>
                 <li><a href="#">Biografias</a></li>
-                <li><a href="#">Históricos</a></li>
+                <li><a href="#">Históricos</a></li>-->
             </ul>
 
         </div>
@@ -92,29 +95,13 @@
 
         <div class="grid-resultados">
 
-            <div class="card">
-                <img src="{% static 'boi.jpg' %}" alt="">
-            </div>
-
-            <div class="card">
-                <img src="{% static 'boi.jpg' %}" alt="">
-            </div>
-
-            <div class="card">
-                <img src="{% static 'boi.jpg' %}" alt="">
-            </div>
-
-            <div class="card">
-                <img src="{% static 'boi.jpg' %}" alt="">
-            </div>
-
-            <div class="card">
-                <img src="{% static 'boi.jpg' %}" alt="">
-            </div>
-
-            <div class="card">
-                <img src="{% static 'boi.jpg' %}" alt="">
-            </div>
+            {% for documentario in documentarios %}
+                <div class="card">
+                    <a href="{% url 'cinedu:detalhes' documentario.id %}">
+                    <img src="{{ documentario.thumbnail.url }}" alt="{{ documentario.titulo }}">
+                    </a>
+                </div>
+            {% endfor %}
 
         </div>
 

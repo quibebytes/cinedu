@@ -6,4 +6,4 @@ __pycache__/
 staticfiles/
 media/
 db.sqlite3
-tabs
+tags

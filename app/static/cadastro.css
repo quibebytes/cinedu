@@ -1,56 +1,54 @@
-/* ===== RESET ===== */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
-  color: white;
 }
 
-/* ===== FUNDO ===== */
+/*  FUNDO */
 body {
   height: 100vh;
   background: linear-gradient(135deg, #141414, #454545);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
 }
 
-/* ===== CONTAINER ===== */
+/*  CONTAINER */
 .container {
   background: rgba(0, 0, 0, 0.85);
-  padding: 50px;
+  padding: 30px;
   border-radius: 10px;
-  width: 420px;
+  width: 480px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
   animation: aparecer 0.6s ease;
 }
 
 .logo {
   text-align: center;
-  margin-bottom: -80px;
+  margin-bottom: -20px;
 }
 
 .logo img {
-  width: 180px;
+  width: 200px;
   height: auto;
 }
 
-/* ===== TÍTULO ===== */
+/* TÍTULO */
 h1 {
   color: yellow;
   text-align: center;
   margin-bottom: 40px;
 }
 
-/* ===== LABEL ===== */
+/* LABEL */
 label {
   color: #fff;
   font-size: 14px;
 }
 
-/* ===== INPUT ===== */
+/* INPUT */
 input {
   width: 100%;
   padding: 10px;
@@ -67,7 +65,7 @@ input:hover {
   border: 1px solid #fff700;
 }
 
-/* ===== SENHA ===== */
+/* SENHA */
 .senha-container {
   position: relative;
 }
@@ -76,7 +74,7 @@ input:hover {
   padding-right: 40px;
 }
 
-/* ===== BOTÃO CADASTRO ===== */
+/* BOTÃO CADASTRO */
 .btn-cadastro {
   width: 100%;
   padding: 12px;
@@ -93,7 +91,7 @@ input:hover {
   background: #fff700;
 }
 
-/* ===== BOTÃO LOGIN ===== */
+/* BOTÃO LOGIN  */
 .btn-login {
   width: 100%;
   padding: 12px;
@@ -110,7 +108,7 @@ input:hover {
   background: #fff700;
 }
 
-/* ===== LINK ===== */
+/* LINK */
 .link-cadastro {
   color: #ccc;
   text-align: center;
@@ -128,14 +126,14 @@ input:hover {
   text-decoration: underline;
 }
 
-/* ===== ERRO ===== */
+/* ERRO */
 #erro {
   color: red;
   margin-top: 10px;
   text-align: center;
 }
 
-/* ===== ANIMAÇÃO ===== */
+/* ANIMAÇÃO */
 @keyframes aparecer {
   from {
     opacity: 0;

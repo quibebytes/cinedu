@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> {{ documentario.titulo }} </title>
+  <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Plyr CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.css" rel="stylesheet">
+
+  <!-- Plyr JS -->
+  <script src="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.min.js"></script>
+  <style>
+    :root {
+        --thumb-url: url("{{ documentario.thumbnail.url }}");
+        --plyr-color-main: #ffd700;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", Arial, sans-serif;
+    }
+
+    body {
+      background: #0b0b0b;
+    }
+
+    #player {
+      height: 100vh; 
+    }
+
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <!--<link rel="stylesheet" href="{% static 'video.css' %}">-->
+</head>
+
+<body>
+
+    <div class="center">
+    <video id="player" controls>
+        <source src="https://samplelib.com/mp4/sample-5s-720p.mp4" type="video/mp4">
+    Seu navegador não suporta a tag "video".
+    </video>
+    </div>
+
+    <script>
+        const player = new Plyr("#player", {
+            controls: ['play', 'play-large', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
+            autoplay: true,
+            muted: false,
+            focused: true,
+            global: false,
+        });
+    </script>
+</body>
+</html>

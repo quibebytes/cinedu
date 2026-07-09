@@ -1,56 +1,67 @@
-{% extends 'cinedu/base.html' %}
 {% load static %}
+<!DOCTYPE html><!--html é um recipiente dos dados HTML-->
+<html lang="pt-br"> <!--lang é a linguagem que será usada no sistema-->
+    <head><!--centro de controle invisível de uma página-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cadastro Cinedu</title><!--O titulo do documento - o algoritmo usa para decidir aos ordens da página - obrigatório em HTML-->
+        <!--Link que aprova os incones-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <!--link que permite o css de fazer alterações-->
+        <link rel="stylesheet" href="{% static 'cadastro.css' %}"> <!--ex: no docx-->
+    </head>
 
-{% block content %}
-<div class="container">
+    <!--INICIO DO CORPO-->
+    <body>
 
-     <div class="logo">
-         <img src="{% static 'Atendendo.png' %}" alt="Logo CINEDU">
-     </div>
+        <div class="container">
 
-    <h1>CINEDU</h1>
+             <div class="logo">
+                 <img src="{% static 'LOGO.png' %}" alt="Logo CINEDU">
+             </div>
 
-    <form class="cadastro-form" method="post"> <!--TUDO O QUE USUÁRIO PODE PREENCHER-->
+            <form class="cadastro-form" method="post"> <!--TUDO O QUE USUÁRIO PODE PREENCHER-->
+               
+                {% csrf_token %}
+                <!--NOME-->
+                <label for="nome">Nome*</label><br>
+                {{ cadastro_form.username }}
+              
+                <!--SENHA-->
+                <label for="senha">Senha*</label><br>
+                <div class="senha-container">
+                {{ cadastro_form.password1 }}
+                </div>
+                
+                <label for="senha">Digite a senha novamente*</label><br>
+                <div class="senha-container">
+                {{ cadastro_form.password2 }}
+                </div>
 
-        {% csrf_token %}
-        <!--NOME-->
-        <label for="nome">Nome</label><br>
-        {{ cadastro_form.username }}
+                <!--PALAVRA-CHAVE-->
+                <label for="chave">Palavra-Chave</label><br>
+                <!--<input type="password" id="chave" name="chave" placeholder="Digite o nome do seu cachorro " required><br><br>-->
+                {{ cadastro_form.palavra_chave }}
 
-        <!--SENHA-->
-        <label for="senha">Senha</label><br>
-        <div class="senha-container">
-            {{ cadastro_form.password1 }}
+                <!--BOTÃO-->
+                <button type="submit" class="btn-cadastro">Cadastrar</button>
+
+                {% if cadastro_form.errors %}
+                {% for field in cadastro_form %}
+                {% for error in field.errors %}
+                    <p id="erro">{{ error }}</p>
+                {% endfor %}
+                {% endfor %}
+                {% endif %}
+
+
+                <p class="link-cadastro">
+                Já tem conta? <a href="{% url 'cinedu:login' %}">Ir para login</a>
+                </p> 
+
+            </form>
+
         </div>
-
-        <label for="senha">Digite a senha novamente</label><br>
-        <div class="senha-container">
-            {{ cadastro_form.password2 }}
-        </div>
-
-        <!--PALAVRA-CHAVE--
-        <label for="chave">Palavra-Chave</label><br>
-        <input type="password" id="chave" name="chave" placeholder="Digite o nome do seu cachorro: " required><br><br>
-        -->
-
-        <!--BOTÃO-->
-        <button type="submit" class="btn-cadastro">Cadastrar</button>
-
-        {% if cadastro_form.errors %}
-            {% for field in cadastro_form %}
-            {% for error in field.errors %}
-                <p id="erro">{{ error }}</p>
-            {% endfor %}
-            {% endfor %}
-        {% endif %}
-
-        <input type="hidden" name="next" value="{{ next }}" />
-
-        <p class="link-cadastro">
-        Já tem conta? <a href="{% url 'login' %}">Ir para login</a>
-        </p> 
-
-    </form>
-
-</div>
-{% endblock %}
+        
+    </body>
+</html>

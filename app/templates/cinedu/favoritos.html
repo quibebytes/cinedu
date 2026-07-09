@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favoritos CINEDU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+   <script>    
+      const SOL_CAMINHO = "{% static 'SOL.png' %}";
+      const SOLCORTADO_CAMINHO = "{% static 'SOLCORTADO.png' %}";
+  </script>
+ <link rel="stylesheet" href="{% static 'favoritos.css' %}">
+</head>
+
+<body>
+<header>
+
+  <!-- LOGO -->
+  <div class="logo">
+      <img src="{% static 'LOGO.png' %}" alt="Logo CINEDU">
+  </div>
+
+  <!-- MENU -->
+  <nav>
+      <a href="{% url 'cinedu:home' %}">Home</a>
+      <a href="{% url 'cinedu:favoritos' %}">Favoritos</a>
+  </nav>
+
+  <!-- ÍCONES + TEMA -->
+  <div class="icons">
+
+      <a href="{% url 'cinedu:pesquisa' %}">
+          <img src="{% static 'pesquisa.png' %}" alt="Pesquisar" class="icone-pesquisa">
+    </a>
+    
+    
+    <img src="{% static 'configurar.png' %}" id="btnConfig" alt="Configurações">
+
+
+    <!-- BOTÃO DE TEMA (AGORA FUNCIONAL) -->
+    <div class="Trocarcores">
+        <img src="{% static 'SOL.png' %}" id="iconeTema" alt="Trocar tema">
+    </div>
+  </div>
+
+</header>
+
+<main class="secao">
+
+    <div class="grid-docs-container">
+    <h2> Seu Favoritos </h2>
+    <div class="grid-docs"> 
+        {% for doc in favoritos %}
+        <a href="{% url 'cinedu:detalhes' doc.id %}">
+        <img src="{{ doc.thumbnail.url }}" alt="{{ doc.titulo }}">
+        </a>
+        {% endfor %}
+    </div>
+    </div>
+</main>
+
+{% include 'cinedu/configuracoes.html' %}
+
+<script src="{% static 'tema.js' %}"></script>
+</body>
+</html>

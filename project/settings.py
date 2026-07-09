@@ -14,6 +14,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+STATIC_ROOT = BASE_DIR / 'staticfiles/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 MEDIA_URL = '/media/'
 
@@ -101,8 +102,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = 'cinedu:login'
 LOGIN_REDIRECT_URL = 'cinedu:home'
 LOGOUT_REDIRECT_URL = 'cinedu:home'
+
+AUTH_USER_MODEL = 'app.Usuario'
 
 
 # Internationalization

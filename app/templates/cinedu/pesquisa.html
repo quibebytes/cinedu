@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisar CINEDU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+   <script>    
+      const SOL_CAMINHO = "{% static 'SOL.png' %}";
+      const SOLCORTADO_CAMINHO = "{% static 'SOLCORTADO.png' %}";
+  </script>
+   <link rel="stylesheet" href="{% static 'pesquisa.css' %}">
+</head>
+<body>
+    <header>
+
+        <!-- LOGO -->
+        <div class="logo">
+            <img src="{% static 'LOGO.png' %}" alt="Logo CINEDU">
+        </div>
+
+        <!-- MENU -->
+        <nav>
+            <a href="{% url 'cinedu:home' %}">Home</a>
+            <a href="{% url 'cinedu:favoritos' %}">Favoritos</a>
+        </nav>
+
+        <!-- ÍCONES + TEMA -->
+        <div class="icons">
+            <img src="{% static 'pesquisa.png' %}" alt="Pesquisar">
+          
+            <img src="{% static 'configurar.png' %}" id="btnConfig" alt="Configurações">
+
+
+            <!-- BOTÃO DE TEMA (AGORA FUNCIONAL) -->
+            <div class="Trocarcores">
+                <img src="{% static 'SOL.png' %}" id="iconeTema" alt="Trocar tema">
+            </div>
+        </div>
+    </header>
+
+   <main>
+
+    <!-- COLUNA ESQUERDA -->
+    <div class="lateral">
+
+        <div class="pesquisa">
+            <h2 class="barra">Pesquisa</h2>
+
+            <form class="barra-pesquisa">
+                <input
+                    type="text"
+                    id="TdD"
+                    name="TituloDoDocumentário"
+                    placeholder="Digite o título do documentário">
+
+                <button type="submit">
+                    <img src="{% static 'Pesquisar2.png' %}"
+                         alt="Pesquisar documentário"
+                         class="logopesquisa">
+                </button>
+            </form>
+        </div>
+
+        <div class="categorias">
+
+            <h2>Categorias</h2>
+
+            <ul>
+                <li><a href="#">Brasileirão</a></li>
+                <li><a href="#">Internacionais</a></li>
+                <li><a href="#">Biologia</a></li>
+                <li><a href="#">Astronomia</a></li>
+                <li><a href="#">Meio ambiente</a></li>
+                <li><a href="#">Crimes reais</a></li>
+                <li><a href="#">Biografias</a></li>
+                <li><a href="#">Históricos</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <!-- COLUNA DIREITA -->
+    <div class="resultados">
+
+        <h3>Resultados</h3>
+
+        <div class="grid-resultados">
+
+            <div class="card">
+                <img src="{% static 'boi.jpg' %}" alt="">
+            </div>
+
+            <div class="card">
+                <img src="{% static 'boi.jpg' %}" alt="">
+            </div>
+
+            <div class="card">
+                <img src="{% static 'boi.jpg' %}" alt="">
+            </div>
+
+            <div class="card">
+                <img src="{% static 'boi.jpg' %}" alt="">
+            </div>
+
+            <div class="card">
+                <img src="{% static 'boi.jpg' %}" alt="">
+            </div>
+
+            <div class="card">
+                <img src="{% static 'boi.jpg' %}" alt="">
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+{% include 'cinedu/configuracoes.html' %}
+<script src="{% static 'tema.js' %}"></script>
+</body>
+</html>

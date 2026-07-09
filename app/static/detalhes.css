@@ -257,6 +257,86 @@ body.claro .icons img{
 
 }
 
+/* ==========================================================================
+   TELA DE CONFIGURAÇÃO (MODAL)
+   ========================================================================== */
+.modal-usuario {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+ 
+  
+    background-color: #0d0d0d; /* Fundo bem escuro */
+    color: #ffffff;
+    border: none;
+    border-radius: 50px; /* Bordas bem arredondadas como na foto */
+    width: 480px;
+    padding: 40px;
+    box-shadow:  5px 20px 60px 10px rgba(255, 208, 0, 0.5);
+}
+
+/* Estilo do fundo escurecido atrás do modal */
+.modal-usuario::backdrop {
+    background-color: rgba(0, 0, 0, 0.775); 
+    
+}
+
+/* Cabeçalho do Modal */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.btn-fechar {
+    background: transparent;
+    border: none;
+    color: #ffd700;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.titulo-usuario {
+    color: #ffd700;
+    font-size: 0.9rem;
+}
+
+/* Conteúdo interno */
+.modal-content h3, .modal-content .destaque {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.modal-content .destaque a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.opcoes-config {
+    list-style: none;
+    margin-bottom: 35px;
+    padding-left: 0;
+}
+
+.opcoes-config li {
+    margin-bottom: 12px;
+}
+
+.opcoes-config li a {
+    color: #cccccc;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.opcoes-config li a:hover, .modal-content .destaque a:hover {
+    color: #ffffff;
+}
+
+
 a {
     text-decoration: none; /* Remove o sublinhado */
     color: inherit;         /* Remove o azul e adota a cor do texto ao redor */

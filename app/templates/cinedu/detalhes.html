@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Detalhes CINEDU </title>
+  <title> {{ documentario.titulo }} </title>
   <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,8 +66,19 @@
         <p><span><b>Duração: </b>{{ documentario.duracao }}</span></p>
         <p id="sinopse">{{ documentario.sinopse }}</p>
     </div>
+  <form id="favorito_form" method="post" hidden>
+      {% csrf_token %}
+      <input type="text" value="fav" name="botao_clicado" hidden>
+  </form>
+
   </div>
 
+
+  {% if favoritado %}
+    <img src="{% static 'estrela.png' %}" alt="Remover documentário do favoritos" class="estrela" id="btn_favorito">
+  {% else %}
+    <img src="{% static 'estrela_contorno.png' %}" alt="Adicionar documentário aos favoritos" class="estrela" id="btn_favorito">
+  {% endif %}
   <div class="seta">
       <a href="{% url 'cinedu:video' documentario.id %}">
       <img src="{% static 'play.png' %}" alt="botão tocar vídeo">
@@ -77,5 +88,11 @@
 </main>
 {% include 'cinedu/configuracoes.html' %}
 <script src="{% static 'tema.js' %}"></script>
+<script>
+
+    btn_favorito.addEventListener("click", () => {
+        favorito_form.submit();
+    });
+</script>
 </body>
 </html>

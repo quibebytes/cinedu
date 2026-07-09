@@ -17,5 +17,6 @@ urlpatterns = [
     path('pesquisa/', views.pesquisa, name='pesquisa'),
     path('detalhes/<int:doc_id>/', views.detalhes, name='detalhes'),
     path('video/<int:doc_id>/', views.video, name='video'),
-    path('logout', views.logout, name='logout'),
+    path('logout/', views.logout, name='logout'),
+    path('alterar-senha/', views.alterar_senha, name='alterar_senha')
 ]

@@ -1,5 +1,5 @@
 {% load static %}
-<!--CONFIGURAÇÕES-->>
+<!--CONFIGURAÇÕES-->
 <dialog id="modalConfig" class="modal-usuario">
     <div class="modal-header">
         <button id="btnFecharModal" class="btn-fechar">&times;</button>
@@ -11,12 +11,12 @@
         
         <h3>Senha</h3>
         <ul class="opcoes-config">
-            <li><a href="#">Alterar Senha</a></li>
+            <li><a href="{% url 'cinedu:alterar_senha' %}">Alterar Senha</a></li>
             <li><a href="#">Alterar Palavra - chave</a></li>
         </ul>
         
         <!--<h3 class="destaque alterarpadding"><a href="#">Alterar Favorito</a></h3>-->
-        <h3 class="destaque alterarpadding"><a style="color: OrangeRed;" href="{% url 'cinedu:logout' %}">Sair da conta</a><h3>
+        <h3 class="destaque alterarpadding"><a style="color: OrangeRed;" href="{% url 'cinedu:logout' %}">Sair da conta</a></h3>
     </div>
 </dialog>
 <script src="{% static 'configuracoes.js' %}"></script>

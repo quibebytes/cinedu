@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html><!--html é um recipiente dos dados HTML-->
+<html lang="pt-br"> <!--lang é a linguagem que será usada no sistema-->
+    <head><!--centro de controle invisível de uma página-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Alterar senha</title><!--O titulo do documento - o algoritmo usa para decidir aos ordens da página - obrigatório em HTML-->
+        <!--Link que aprova os incones-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+        <!--link que permite o css de fazer alterações-->
+        <link rel="stylesheet" href="{% static 'cadastro.css' %}"> <!--ex: no docx-->
+    </head>
+
+    <!--INICIO DO CORPO-->
+    <body>
+
+        <div class="container">
+
+            <form class="cadastro-form" method="post"> <!--TUDO O QUE USUÁRIO PODE PREENCHER-->
+               
+                {% csrf_token %}
+                <!--NOME-->
+              
+                <!--SENHA-->
+                <label for="senha">Digite a senha nova*</label><br>
+                <div class="senha-container">
+                {{ senha_form.password1 }}
+                </div>
+                
+                <label for="senha">Digite-a novamente*</label><br>
+                <div class="senha-container">
+                {{ senha_form.password2 }}
+                </div>
+
+                <!--BOTÃO-->
+                <button type="submit" class="btn-cadastro">Confirmar</button>
+
+                {% if senha_form.errors %}
+                    {% for field in senha_form %}
+                        {% for error in field.errors %}
+                            <p id="erro">{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in senha_form.non_field_errors %}
+                        <div id="erro">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </form>
+
+        </div>
+        
+    </body>
+</html>

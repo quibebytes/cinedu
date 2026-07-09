@@ -44,3 +44,8 @@ class CadastroForm(UserCreationForm):
         model = Usuario
         fields = ['username', 'password1', 'password2']
 
+
+class AlterarSenhaForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = Usuario
+        fields = ['password1', 'password2']

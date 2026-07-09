@@ -3,8 +3,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout as auth_logout
-from .forms import CadastroForm
-from .models import Favorito, Documentario
+from django.db.models import Q
+from .forms import CadastroForm, AlterarSenhaForm
+from .models import Favorito, Documentario, Usuario
 
 # Create your views here.
 @login_required
@@ -19,7 +20,23 @@ def favoritos(request):
 @login_required
 def detalhes(request, doc_id):
     documentario = get_object_or_404(Documentario, id=doc_id)
-    return render(request, 'cinedu/detalhes.html', { 'documentario': documentario, 'usuario': request.user })
+    favoritado = Favorito.objects.filter(Q(usuario_id=request.user.id) & Q(documentario_id=doc_id)).exists()
+
+    if request.method == "POST" and request.POST["botao_clicado"] == "fav":
+        if favoritado:
+           fav_obj = Favorito.objects.get(Q(usuario_id=request.user.id) & Q(documentario_id=doc_id)) 
+           fav_obj.delete()
+        else:
+            fav_obj = Favorito(usuario=request.user, documentario=documentario)
+            fav_obj.save()
+
+        favoritado = not favoritado
+
+    return render(request, 'cinedu/detalhes.html', {
+        'documentario': documentario,
+        'usuario': request.user,
+        'favoritado': favoritado,
+    })
 
 @login_required
 def pesquisa(request):
@@ -33,14 +50,12 @@ def video(request, doc_id):
 @login_required
 def logout(request):
     auth_logout(request)
-    return HttpResponse("Log out realizado com sucesso.")
-
-
+    return HttpResponse('Log out realizado com sucesso.')
 
 def cadastro(request):
     if request.method == 'GET':
         cadastro_form = CadastroForm()
-        return render(request, 'cinedu/cadastro.html', { 'cadastro_form': cadastro_form, 'style_path': 'style.css' })
+        return render(request, 'cinedu/cadastro.html', { 'cadastro_form': cadastro_form })
 
     if request.method == 'POST':
         cadastro_form = CadastroForm(request.POST)
@@ -53,4 +68,20 @@ def cadastro(request):
             login(request, usuario)
             return redirect('cinedu:home')
         else:
-            return render(request, 'cinedu/cadastro.html', { 'cadastro_form': cadastro_form, 'style_path': 'style.css' })
+            return render(request, 'cinedu/cadastro.html', { 'cadastro_form': cadastro_form })
+
+@login_required
+def alterar_senha(request):
+    if request.method == 'GET':
+        senha_form = AlterarSenhaForm()
+        return render(request, 'cinedu/alterar_senha.html', { 'senha_form': senha_form })
+
+    if request.method == 'POST':
+        senha_form = AlterarSenhaForm(request.POST)
+        if senha_form.is_valid():
+            request.user.set_password(senha_form.cleaned_data.get('password1'))
+            request.user.save()
+            messages.success(request, 'Alteração de senha realizada com sucesso.')
+            return redirect('cinedu:home')
+        else:
+            return render(request, 'cinedu/alterar_senha.html', { 'senha_form': senha_form })

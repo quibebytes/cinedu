@@ -1,75 +1,81 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> {{ documentario.titulo }} </title>
-  <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Plyr CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.css" rel="stylesheet">
-
-  <!-- Plyr JS -->
-  <script src="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.min.js"></script>
-  <style>
-    :root {
-        --thumb-url: url("{{ documentario.thumbnail.url }}");
-        --plyr-color-main: #ffd700;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", Arial, sans-serif;
-    }
-
-    body {
-      background: #0b0b0b;
-    }
-
-    #player {
-      height: 100vh; 
-    }
-
-    .center {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  </style>
-  <!--<link rel="stylesheet" href="{% static 'video.css' %}">-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ documentario.titulo }}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.8.3/plyr.css">
+    <link rel="stylesheet" href="{% static 'player.css' %}">
 </head>
-
 <body>
+<div class="player">
 
-    {%if documentario.endereco_video %}
-        <div class="center">
-        <video id="player" controls>
-            <source src="{{ documentario.endereco_video }}" type="video/mp4">
-        Seu navegador não suporta a tag "video".
-        </video>
-        </div>
-    {% else %}
-        <div class="center">
-        <video id="player" controls>
-            <source src="{{ documentario.arquivo_video.url }}" type="video/mp4">
-        Seu navegador não suporta a tag "video".
-        </video>
-        </div>
-    {% endif %}
+    <div id="player"
+         data-plyr-provider="youtube"
+         data-plyr-embed-id="{{ documentario.endereco_video }}"> <!-- [32:] n entendi essa slice -->
+    </div>
+    <div id="overlay">
 
-    <script>
-        const player = new Plyr("#player", {
-            controls: ['play', 'play-large', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
-            autoplay: true,
-            muted: false,
-            focused: true,
-            global: false,
-        });
-    </script>
+        <div id="timelineContainer">
+
+            <span id="current">00:00</span>
+
+            <div id="timeline">
+
+                <div id="progress"></div>
+
+            </div>
+
+            <span id="duration">00:00</span>
+
+        </div>
+
+        <div id="controls">
+
+            <div id="centerControls">
+
+                <button id="backBtn">
+                    ⏮
+                </button>
+
+                <button id="playBtn">
+                    ▶
+                </button>
+
+                <button id="nextBtn">
+                    ⏭
+                </button>
+
+            </div>
+
+            <div id="rightControls">
+
+                <button id="muteBtn">
+                    🔇
+                </button>
+
+                <button id="captionBtn">
+                    CC
+                </button>
+
+                <button id="fullscreenBtn">
+                    ⛶
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.plyr.io/3.8.3/plyr.polyfilled.js"></script>
+
+<script src="{% static 'player.js' %}"></script>
+
 </body>
+
 </html>

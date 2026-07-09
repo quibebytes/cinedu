@@ -1,0 +1,286 @@
+/* =======================================================
+   RESET
+======================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#000;
+    font-family:Segoe UI, Arial, sans-serif;
+}
+
+body{
+    display:flex;
+}
+
+/* =======================================================
+   PLAYER
+======================================================= */
+
+.player{
+
+    position:relative;
+
+    width:100vw;
+    height:100vh;
+
+    background:#000;
+
+}
+
+#player{
+
+    width:100%;
+    height:100%;
+
+}
+
+#player iframe{
+
+    width:100% !important;
+    height:100% !important;
+
+}
+
+/* =======================================================
+   OVERLAY
+======================================================= */
+
+#overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-end;
+
+    pointer-events:none;
+
+    transition:.25s;
+
+}
+
+/* =======================================================
+   TIMELINE
+======================================================= */
+
+#timelineContainer{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:0 28px 10px;
+
+    pointer-events:auto;
+
+}
+
+#current,
+#duration{
+
+    color:#fff;
+
+    font-size:12px;
+
+    width:45px;
+
+    text-align:center;
+
+    user-select:none;
+
+}
+
+#timeline{
+
+    flex:1;
+
+    height:4px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.20);
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    transition:.2s;
+
+}
+
+#timeline:hover{
+
+    height:6px;
+
+}
+
+#progress{
+
+    width:0;
+
+    height:100%;
+
+    background:white;
+
+    border-radius:999px;
+
+}
+
+/* =======================================================
+   CONTROLES
+======================================================= */
+
+#controls{
+
+    position:relative;
+
+    height:64px;
+
+    margin:0 20px 20px;
+
+    border-radius:18px;
+
+    background:rgba(20,20,20,.18);
+
+    backdrop-filter:blur(24px);
+
+    -webkit-backdrop-filter:blur(24px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.35),
+        inset 0 1px rgba(255,255,255,.08);
+
+    pointer-events:auto;
+
+}
+
+/* =======================================================
+   CONTROLES CENTRAIS
+======================================================= */
+
+#centerControls{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+/* =======================================================
+   CONTROLES DIREITA
+======================================================= */
+
+#rightControls{
+
+    position:absolute;
+
+    right:18px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+/* =======================================================
+   BOTÕES
+======================================================= */
+
+button{
+
+    width:38px;
+
+    height:38px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:transparent;
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+button:hover{
+
+    background:rgba(255,255,255,.08);
+
+}
+
+button:active{
+
+    transform:scale(.92);
+
+}
+
+/* =======================================================
+   ESCONDER CONTROLES
+======================================================= */
+
+.hide{
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+}
+
+/* =======================================================
+   ESCONDER O PLYR
+======================================================= */
+
+.plyr__controls{
+
+    display:none !important;
+
+}
+
+.plyr--full-ui input[type=range]{
+
+    display:none !important;
+
+}
+
+.plyr__control{
+
+    display:none !important;
+
+}

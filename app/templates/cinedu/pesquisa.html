@@ -51,11 +51,13 @@
         <div class="pesquisa">
             <h2 class="barra">Pesquisa</h2>
 
-            <form class="barra-pesquisa">
+            <form class="barra-pesquisa" method="post">
+                {% csrf_token %}
+
                 <input
                     type="text"
                     id="TdD"
-                    name="TituloDoDocumentário"
+                    name="termos_de_pesquisa"
                     placeholder="Digite o título do documentário">
 
                 <button type="submit">

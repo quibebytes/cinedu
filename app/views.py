@@ -40,7 +40,7 @@ def detalhes(request, doc_id):
     documentario = get_object_or_404(Documentario, id=doc_id)
     favoritado = Favorito.objects.filter(Q(usuario_id=request.user.id) & Q(documentario_id=doc_id)).exists()
 
-    if request.method == "POST" and request.POST["botao_clicado"] == "fav":
+    if request.method == 'POST' and request.POST['botao_clicado'] == 'fav':
         if favoritado:
            fav_obj = Favorito.objects.get(Q(usuario_id=request.user.id) & Q(documentario_id=doc_id)) 
            fav_obj.delete()
@@ -62,7 +62,17 @@ def pesquisa(request, cat_id=None):
     if cat_id:
         documentarios = Documentario.objects.filter(categoria__id=cat_id)
     else:
-        documentarios = Documentario.objects.all()[:50]
+        documentarios = Documentario.objects.all()
+
+    # Pesquisa simples de substrings
+    if request.method == 'POST':
+        termos = request.POST.get('termos_de_pesquisa').strip();
+        documentarios = documentarios.filter(
+            Q(titulo__contains=termos)          |
+            Q(autor__contains=termos)           |
+            Q(data_publicacao__contains=termos) |
+            Q(sinopse__contains=termos)         
+        )
 
     return render(request, 'cinedu/pesquisa.html', {
         'usuario': request.user,
